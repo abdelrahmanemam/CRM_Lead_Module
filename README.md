@@ -26,3 +26,12 @@ DB_PASSWORD=
 To access user part you need to sign in with dump user data in the seeder
 username => user@test.com
 password => 123456
+
+/////////////////////////////////////////////////////////////////////
+
+* In case testing the app without docker
+1. Create env file with database name (DB_HOST=127.0.0.1)
+2. run php artisan migrate --seed
+3. php artisan passport:install
+
+/////////////////////////////////////////////////////////////////////
