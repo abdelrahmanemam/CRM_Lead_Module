@@ -25,9 +25,8 @@ class UserController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), ResponseAlias::HTTP_FORBIDDEN);
-        }
+        if ($validator->fails())
+            return response($validator->errors(), ResponseAlias::HTTP_FORBIDDEN);
 
         $user = $this->userInterface->create($request->toArray());
 
@@ -43,9 +42,9 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
+        if ($validator->fails())
+            return response($validator->errors(), 422);
+
 
         if (!auth()->attempt($request->toArray())) {
             return response(['error_message' => 'Incorrect Details.
@@ -54,6 +53,6 @@ class UserController extends Controller
 
         $token = auth()->user()->createToken('User Token')->accessToken;
 
-        return response(['token' => $token]);
+        return response(['token' => $token], ResponseAlias::HTTP_OK);
     }
 }

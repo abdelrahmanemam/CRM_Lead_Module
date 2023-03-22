@@ -4,16 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Attribute extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['option_id', 'first_name', 'last_name', 'full_name', 'description', 'address', 'gender'];
+    protected $fillable = ['name', 'option_id', 'is_fillable', 'is_unique', 'is_mandatory', 'has_value_per_locale'];
 
-    public function leads(): BelongsToMany
+    public function option(): BelongsTo
     {
-        return $this->belongsToMany(Lead::class, 'lead_attributes')->withPivot('value');
+        return $this->belongsTo(Option::class);
     }
 }

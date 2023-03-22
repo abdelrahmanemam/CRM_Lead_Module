@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Http\Interfaces\AttributeInterface;
 use App\Http\Interfaces\LeadAttributeInterface;
 use App\Http\Interfaces\LeadInterface;
+use App\Http\Repositories\AttributeRepository;
 use App\Http\Repositories\LeadAttributeRepository;
 use App\Http\Repositories\LeadRepository;
 use App\Http\Repositories\UserRepository;
@@ -20,6 +22,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserInterface::class, UserRepository::class);
         $this->app->bind(LeadInterface::class, LeadRepository::class);
         $this->app->bind(LeadAttributeInterface::class, LeadAttributeRepository::class);
+        $this->app->bind(AttributeInterface::class, AttributeRepository::class);
     }
 
     /**

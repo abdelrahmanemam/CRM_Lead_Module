@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Interfaces\LeadAttributeInterface;
 use App\Http\Interfaces\LeadInterface;
 use App\Http\Services\LeadService;
-use App\Models\LeadAttribute;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
@@ -47,9 +46,9 @@ class LeadController extends Controller
             'gender' => Rule::in(['male', 'female']),
         ]);
 
-        if ($validator->fails()) {
+        if ($validator->fails())
             return response($validator->errors(), ResponseAlias::HTTP_FORBIDDEN);
-        }
+
 
         $request['full_name'] = LeadService::createFullName(first_name: $request['first_name'], last_name: $request['last_name']);
 
